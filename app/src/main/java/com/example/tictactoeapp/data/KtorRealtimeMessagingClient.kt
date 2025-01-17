@@ -26,7 +26,7 @@ class KtorRealtimeMessagingClient(
         // this 10 lines get websocket msg and convert into real-time msg
         return flow {
             session = client.webSocketSession {
-                url("ws://192.168.1.1/play")
+                url("ws://10.0.2.2:8080/play")
             }
             // we have a Flow of type GameState, which will trigger every time whenever a new msg
             // is coming, it will automatically map that into an actual GameState object
