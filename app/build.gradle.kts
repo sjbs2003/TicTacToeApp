@@ -1,19 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.dagger.hilt.plugin)
-    alias(libs.plugins.kotlin.kapt)
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.example.tictactoeapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.tictactoeapp"
         minSdk = 27
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -33,17 +32,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -76,9 +75,10 @@ dependencies {
     //serialization
     implementation(libs.kotlinx.serialization.json)
 
-    // hilt
-    implementation(libs.dagger.hilt)
-    kapt(libs.dagger.hilt.compiler)
+    // Koin
+    implementation("io.insert-koin:koin-core:3.5.3")
+    implementation("io.insert-koin:koin-android:3.5.3")
+    implementation("io.insert-koin:koin-androidx-compose:3.5.3")
 
     // ktor
     implementation(libs.ktor.client.core)
@@ -86,5 +86,6 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.cio)
 
 }
